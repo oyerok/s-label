@@ -1,0 +1,22 @@
+public function getAll(){
+        $query = 'SELECT * FROM users';
+        $stm = self::$dbh->prepare($query);
+        $stm->execute();
+        $list = $stm->fetchAll(PDO::FETCH_ASSOC);
+        var_dump($list);
+     }
+    
+    public function addTestData(){
+       for  ($i=1; $i<=1000; ++$i){
+           $query = 'INSERT INTO users (`id`, `name`, `serName`, `phone`) VALUES ("' . $i . '", "name'.$i.'", "serName'.$i.'", "+380664350'.$i.'")';
+           $stm = self::$dbh->prepare($query);
+           $stm->execute();
+       }
+     }
+    
+    public function deleteAll(){
+        $query = 'DELETE FROM users';
+        $stm = self::$dbh->prepare($query);
+        $stm->execute();
+        echo 'All data are deleted';
+     }
